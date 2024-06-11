@@ -156,7 +156,14 @@
   // ===================================
 
   $(document)
-    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('show.bs.dropdown', function(e) {
+      $(document)
+        .on('click.bs.dropdown.data-api', clearMenus)
+    })
+    .on('hide.bs.dropdown', function(e) {
+      $(document)
+        .off('click.bs.dropdown.data-api', clearMenus)
+    })
 
   $('.dropdown form')
     .on('click.bs.dropdown.data-api', function (e) { e.stopPropagation() })
